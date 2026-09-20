@@ -1,4 +1,4 @@
-FROM rocm/dev-ubuntu-22.04:6.2
+FROM rocm/dev-ubuntu-24.04:7.2
 
 RUN apt-get update && apt-get install -y \
     ca-certificates \
