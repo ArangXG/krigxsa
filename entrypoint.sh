@@ -15,8 +15,10 @@ if command -v rocminfo >/dev/null 2>&1; then
     fi
 else
     echo "⚠️  WARNING: rocminfo tidak ditemukan di dalam container!"
-    echo "    Pastikan host sudah install driver amdgpu + ROCm,"
-    echo "    dan container dijalankan dengan --device=/dev/kfd --device=/dev/dri"
+    echo "    Kalau jalan di Linux native: pastikan host punya driver amdgpu + ROCm,"
+    echo "    dan container dijalankan dengan --device=/dev/kfd --device=/dev/dri."
+    echo "    Kalau jalan di SaladCloud (WSL2): device-nya /dev/dxg dan sudah"
+    echo "    otomatis di-inject platform, tidak perlu diatur manual."
 fi
 
 # Validasi ENV wajib
