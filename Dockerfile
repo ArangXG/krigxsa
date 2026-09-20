@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
 # Kalau versinya sudah update, ganti URL ini sesuai versi terbaru di
 # https://github.com/kryptex-miners-org/kryptex-miners/releases
 ARG KRIG_VERSION=1.5.1
-RUN wget -q "https://github.com/kryptex-miners-org/kryptex-miners/releases/download/krig-${KRIG_VERSION//./-}/krig-miner-${KRIG_VERSION}-linux-x64.tar.gz" -O /tmp/krig.tar.gz \
+RUN KRIG_TAG=$(echo "$KRIG_VERSION" | tr '.' '-') \
+    && wget -q "https://github.com/kryptex-miners-org/kryptex-miners/releases/download/krig-${KRIG_TAG}/krig-miner-${KRIG_VERSION}-linux-x64.tar.gz" -O /tmp/krig.tar.gz \
     && mkdir -p /tmp/krig \
     && tar -xzf /tmp/krig.tar.gz -C /tmp/krig \
     && find /tmp/krig -type f -name "krig-miner" -exec cp {} /usr/local/bin/krig-miner \; \
