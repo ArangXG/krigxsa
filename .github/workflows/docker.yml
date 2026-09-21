@@ -3,6 +3,9 @@ name: Build & Push Docker
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '0 6 * * *'   # tiap hari jam 06:00 UTC, cek update krig-miner terbaru
+  workflow_dispatch: {}    # bisa dipicu manual dari tab Actions kalau mau cek sekarang
 
 jobs:
   build:
@@ -20,6 +23,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
+          build-args: |
+            CACHEBUST=${{ github.run_id }}
           tags: |
             tarxg/krigxsa:latest
             tarxg/krigxsa:v1
